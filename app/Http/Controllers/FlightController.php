@@ -9,7 +9,8 @@ class FlightController extends Controller
 {
     public function home()
     {
-        return view("welcome");
+        $flights = Flight::all();
+        return view("welcome",compact("flights"));
     }
 
     public function dashboard()
@@ -50,5 +51,13 @@ class FlightController extends Controller
 
     // Return the view with the compacted data
     return view('flights', compact('flights'));
+}
+public function offer()
+{
+    // Fetch all flights
+    $flights = Flight::all();
+
+    // Return the view with the compacted data
+    return view('offers', compact('flights'));
 }
 }

@@ -19,10 +19,10 @@
           <a href="{{route('flight')}}" class="block py-2 px-3 md:border-0 text-white md:hover:text-[#FC0000] hover:bg-gray-700  md:hover:bg-transparent">Flights</a>
         </li>
         <li>
-          <a href="/special-offers" class="block py-2 px-3 md:border-0 text-white md:hover:text-[#FC0000] hover:bg-gray-700  md:hover:bg-transparent">Special offers</a>
+          <a href="{{route('offer')}}" class="block py-2 px-3 md:border-0 text-white md:hover:text-[#FC0000] hover:bg-gray-700  md:hover:bg-transparent">Special offers</a>
         </li>
         <li>
-          <a href="/support" class="block py-2 px-3 md:border-0 text-white md:hover:text-[#FC0000] hover:bg-gray-700  md:hover:bg-transparent">Support</a>
+          <a href="{{route('support')}}" class="block py-2 px-3 md:border-0 text-white md:hover:text-[#FC0000] hover:bg-gray-700  md:hover:bg-transparent">Support</a>
         </li>
       </ul>
     </div>
