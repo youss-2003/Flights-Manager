@@ -16,7 +16,8 @@
     <div class="flex justify-center items-center h-screen bg-gray-50">
         <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 mt-0">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-                @foreach($flights->slice(0, 6) as $flight)
+                @foreach($flights as $flight)
+               @if ($flight->is_offer===1)
                 <!-- CARD -->
                 <div class="rounded overflow-hidden shadow-lg flex flex-col">
                     <!-- Card Image -->
@@ -79,6 +80,7 @@
                         </div>
                     </div>
                 </div>
+               @endif
                 @endforeach
             </div>
         </div>
