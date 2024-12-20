@@ -19,14 +19,13 @@
         <div class="rounded overflow-hidden shadow-lg flex flex-col">
             <!-- Card Image -->
             <div class="relative">
-                <img class="w-full"
-                    src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/33/fd/6f/ankara.jpg?w=1200&h=700&s=1"
-                    alt="Destination">
+                <img class="w-full h-48 object-cover" src="{{ $flight->cityimg }}" alt="Destination">
                 <div class="absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
                 <div class="absolute top-0 right-0 bg-[#FC0000] px-4 py-2 text-white mt-3 mr-3 text-xs">
                     -{{ $flight->percentage }}%
                 </div>
             </div>
+
             <!-- Card Body -->
             <div class="px-6 py-4">
                 <div class="flex justify-between items-center mb-3">
