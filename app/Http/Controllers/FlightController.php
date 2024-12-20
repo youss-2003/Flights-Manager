@@ -60,4 +60,9 @@ public function offer()
     // Return the view with the compacted data
     return view('offers', compact('flights'));
 }
+public function supportpage()
+{
+   
+    return view('support');
+}
 }

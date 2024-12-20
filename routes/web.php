@@ -20,7 +20,7 @@ Route::get('/',[FlightController::class,'home'])->name('home');
 
 Route::get('/special-offer',[FlightController::class,'offer'])->name('offer');
 
-Route::get('/support',[FlightController::class,'home'])->name('support');
+Route::get('/support',[FlightController::class,'supportpage'])->name('support');
 
 Route::get('/dashboard',[FlightController::class,'dashboard'])->name('dashboard');
 
