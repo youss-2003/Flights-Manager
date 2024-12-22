@@ -31,15 +31,15 @@
                     </a>
 
                     <h1 class="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                        Dashboard
+                        Update Ticket
                     </h1>
 
                     <p class="mt-4 leading-relaxed text-gray-500">
                         if you have any probleme in the system let us know by calling the <a href="{{route('support')}}" class=" underline hover:text-red-500 ">Support</a> staff
                     </p>
 
-                    <form action="{{ route('flights.store') }}" method="POST" class="mt-8 grid grid-cols-1 gap-6">
-
+                    <form action="{{ route('flights.update', $flight->id) }}" method="POST" class="mt-8 grid grid-cols-1 gap-6">
+                        @method('PUT')
                         @csrf
 
                         @if ($errors->any())
@@ -55,94 +55,94 @@
                         <!-- Departure and Arrival -->
                         <div class="col-span-2">
                             <label for="from_city" class="block text-sm font-medium text-gray-700">From City</label>
-                            <input type="text" id="from_city" name="from_city" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" required />
+                            <input type="text" id="from_city" name="from_city" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" value="{{$flight->from_city}}" required />
                         </div>
 
                         <div class="col-span-1">
                             <label for="to_city" class="block text-sm font-medium text-gray-700">To City</label>
-                            <input type="text" id="to_city" name="to_city" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" required />
+                            <input type="text" id="to_city" name="to_city" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" value="{{$flight->to_city}}" required />
                         </div>
 
                         <!-- Airline Details -->
                         <div class="col-span-1">
                             <label for="airline" class="block text-sm font-medium text-gray-700">Airline Name</label>
-                            <input type="text" id="airline" name="airline" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" required />
+                            <input type="text" id="airline" name="airline" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" value="{{$flight->airline}}" required />
                         </div>
 
                         <div class="col-span-1">
                             <label for="imageAirline" class="block text-sm font-medium text-gray-700">Airline Logo URL</label>
-                            <input type="url" id="imageAirline" name="imageAirline" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" required />
+                            <input type="url" id="imageAirline" name="imageAirline" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" value="{{$flight->imageAirline}}" required />
                         </div>
 
                         <div class="col-span-1">
                             <label for="cityimg" class="block text-sm font-medium text-gray-700">City Image URL</label>
-                            <input type="url" id="cityimg" name="cityimg" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" required />
+                            <input type="url" id="cityimg" name="cityimg" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" value="{{$flight->cityimg}}" required />
                         </div>
 
                         <!-- Timing -->
                         <div class="col-span-1">
                             <label for="departing_time" class="block text-sm font-medium text-gray-700">Departing Time</label>
-                            <input type="datetime-local" id="departing_time" name="departing_time" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" required />
+                            <input type="datetime-local" id="departing_time" name="departing_time" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" value="{{$flight->departing_time}}" required />
                         </div>
 
                         <div class="col-span-1">
                             <label for="arriving_time" class="block text-sm font-medium text-gray-700">Arriving Time</label>
-                            <input type="datetime-local" id="arriving_time" name="arriving_time" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" required />
+                            <input type="datetime-local" id="arriving_time" name="arriving_time" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" value="{{$flight->arriving_time}}" required />
                         </div>
 
                         <!-- Offer and Features -->
                         <div class="col-span-1">
                             <label for="is_offer" class="block text-sm font-medium text-gray-700">Is Offer</label>
                             <select id="is_offer" name="is_offer" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
+                                <option value="0" {{ $flight->is_offer == 0 ? 'selected' : '' }}>No</option>
+                                <option value="1" {{ $flight->is_offer == 1 ? 'selected' : '' }}>Yes</option>
                             </select>
                         </div>
 
                         <div class="col-span-1">
                             <label for="has_wifi" class="block text-sm font-medium text-gray-700">Has WiFi</label>
                             <select id="has_wifi" name="has_wifi" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
+                                <option value="0" {{$flight -> has_wifi == 0 ? 'selected' : ''}}>No</option>
+                                <option value="1" {{$flight -> has_wifi == 1 ? 'selected' : ''}}>Yes</option>
                             </select>
                         </div>
 
                         <div class="col-span-1">
                             <label for="is_direct" class="block text-sm font-medium text-gray-700">Is Direct</label>
                             <select id="is_direct" name="is_direct" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
+                                <option value="0" {{$flight -> is_direct == 0 ? 'selected' : ''}}>No</option>
+                                <option value="1" {{$flight -> is_direct == 1 ? 'selected' : ''}}>Yes</option>
                             </select>
                         </div>
 
                         <div class="col-span-1">
                             <label for="showcase" class="block text-sm font-medium text-gray-700">Showcase</label>
                             <select id="showcase" name="showcase" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm">
-                               <option value="0">No</option>
-                               <option value="1">Yes</option>
+                               <option value="0" {{$flight -> showcase == 0 ? 'selected' : ''}}>No</option>
+                               <option value="1" {{$flight -> showcase == 1 ? 'selected' : ''}}>Yes</option>
                             </select>
                         </div>
 
                         <!-- Pricing Fields -->
                         <div class="col-span-1">
                             <label for="oldprice" class="block text-sm font-medium text-gray-700">Old Price</label>
-                            <input type="number" step="0.01" id="oldprice" name="oldprice" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" required />
+                            <input type="number" step="0.01" id="oldprice" name="oldprice" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" value="{{$flight->oldprice}}" required />
                         </div>
 
                         <div class="col-span-1">
                             <label for="newprice" class="block text-sm font-medium text-gray-700">New Price (Optional)</label>
-                            <input type="number" step="0.01" id="newprice" name="newprice" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+                            <input type="number" step="0.01" id="newprice" name="newprice" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"  value="{{$flight->newprice}}"/>
                         </div>
 
                         <div class="col-span-1">
                             <label for="offer_percentage" class="block text-sm font-medium text-gray-700">Offer Percentage</label>
-                            <input type="text" id="offer_percentage" name="percentage" class="mt-1 w-full rounded-md border-gray-200 bg-gray-100 text-sm text-gray-700 shadow-sm" readonly />
+                            <input type="text" id="offer_percentage" name="percentage" class="mt-1 w-full rounded-md border-gray-200 bg-gray-100 text-sm text-gray-700 shadow-sm" value="{{$flight->percentage}}" readonly />
                         </div>
 
                         <!-- Other Details -->
                         <div class="col-span-1">
                             <label for="duration" class="block text-sm font-medium text-gray-700">Duration</label>
-                            <input type="text" id="duration" name="duration" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" required readonly />
+                            <input type="text" id="duration" name="duration" class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" value="{{$flight->duration}}" required readonly />
                         </div>
 
                         <!-- Submit -->

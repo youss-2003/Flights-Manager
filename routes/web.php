@@ -27,3 +27,10 @@ Route::get('/dashboard',[FlightController::class,'dashboard'])->name('dashboard'
 Route::post('/storeticket', [FlightController::class, 'store'])->name('flights.store');
 
 Route::get('/flights', [FlightController::class, 'index'])->name('flight');
+
+
+Route::put('/flights/{id}', [FlightController::class, 'update'])->name('flights.update');
+
+Route::get('/flights/{id}/edit', [FlightController::class, 'edit'])->name('flights.edit');
+
+Route::delete('/flights/{id}', [FlightController::class, 'destroy'])->name('flights.destroy');

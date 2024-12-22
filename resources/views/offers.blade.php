@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{env('APP_NAME','XAIRLINES')}}</title>
-        <link rel="icon" type="image/x-icon" href="https://seeklogo.com/images/H/hong-kong-airlines-logo-B5E8D635C9-seeklogo.com.png">
+        <link rel="icon" type="image/x-icon"
+            href="https://seeklogo.com/images/H/hong-kong-airlines-logo-B5E8D635C9-seeklogo.com.png">
         @vite('resources/css/app.css')
         <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     </head>
 </head>
+
 <body>
     @include('partials.header')
     <div class="flex justify-center items-center h-screen bg-gray-50">
         <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 mt-0">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
                 @foreach($flights as $flight)
-               @if ($flight->is_offer===1)
+                @if ($flight->is_offer===1)
                 <!-- CARD -->
                 <div class="rounded overflow-hidden shadow-lg flex flex-col">
                     <!-- Card Image -->
-<div class="relative">
-    <img class="w-full h-48 object-cover"
-        src="{{ $flight->cityimg }}"
-        alt="Destination">
-    <div class="absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
-    <div class="absolute top-0 right-0 bg-[#FC0000] px-4 py-2 text-white mt-3 mr-3 text-xs">
-        -{{ $flight->percentage }}%
-    </div>
-</div>
+                    <div class="relative">
+                        <img class="w-full h-48 object-cover" src="{{ $flight->cityimg }}"
+                         alt="Destination">
+                        <div class="absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
+                        <div class="absolute top-0 right-0 bg-[#FC0000] px-4 py-2 text-white mt-3 mr-3 text-xs">
+                            -{{ $flight->percentage }}%
+                        </div>
+                    </div>
 
                     <!-- Card Body -->
                     <div class="px-6 py-4">
@@ -45,9 +48,10 @@
                     <div class="px-6 py-3 bg-gray-100 flex justify-between items-center">
                         <div class="text-gray-600 text-sm flex items-center">
                             <svg class="w-5 h-5 me-1 text-gray-800 dark:text-white" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                             {{ $flight->duration }}
                         </div>
@@ -75,17 +79,27 @@
                                 alt="plan img" class="h-5 w-5">
                             @else
                             <!-- plane fly img icon  -->
-                            <img src="https://static.thenounproject.com/png/993451-200.png" alt="plan img" class="h-5 w-5">
+                            <img src="https://static.thenounproject.com/png/993451-200.png" alt="plan img"
+                                class="h-5 w-5">
                             @endif
                         </div>
+                        <form action="{{ route('flights.destroy', $flight->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-600 text-white p-2" >DELETE</button>
+                        </form>
+                        
+                         <a href="{{ route('flights.edit', $flight->id) }}" class="bg-green-600 text-white p-2">EDIT</a>
+
                     </div>
                 </div>
-               @endif
+                @endif
                 @endforeach
             </div>
         </div>
     </div>
 
-@include('partials.footer')
+    @include('partials.footer')
 </body>
+
 </html>
