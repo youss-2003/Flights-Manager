@@ -68,7 +68,7 @@ public function supportpage()
 // Update flight page
 public function edit($id)
 {
-    $flight = Flight::findOrFail($id);
+    $flight = Flight::find($id);
     return view('update', compact('flight'));
 }
 // Update a flight
